@@ -1,3 +1,5 @@
+import random
+
 import asyncio
 import binascii
 import hashlib
@@ -43,7 +45,7 @@ class DeezerClient(Client):
     async def login(self):
         # Used for track downloads
         self.session = await self.get_session()
-        arl = self.config.arl
+        arl = random.choice(self.config.arl)
         if not arl:
             raise MissingCredentialsError
         success = self.client.login_via_arl(arl)
